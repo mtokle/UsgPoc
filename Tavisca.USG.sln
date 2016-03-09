@@ -29,6 +29,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5.TestSuit", "5.TestSuit", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.USG.TestSuit", "Tavisca.USG.TestSuit\Tavisca.USG.TestSuit.csproj", "{09A18D2D-49AB-402A-928A-ED30F216398D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.USG.ConnectorConsole", "Tavisca.USG.ConnectorConsole\Tavisca.USG.ConnectorConsole.csproj", "{F8E2B407-13EA-4875-9215-BF581FFDF431}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,6 +69,10 @@ Global
 		{09A18D2D-49AB-402A-928A-ED30F216398D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{09A18D2D-49AB-402A-928A-ED30F216398D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{09A18D2D-49AB-402A-928A-ED30F216398D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8E2B407-13EA-4875-9215-BF581FFDF431}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8E2B407-13EA-4875-9215-BF581FFDF431}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8E2B407-13EA-4875-9215-BF581FFDF431}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8E2B407-13EA-4875-9215-BF581FFDF431}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -80,5 +86,6 @@ Global
 		{B6ECAF45-D3C5-473E-9E6B-B80D8299FB31} = {B536194F-8FD8-407E-A770-179D33B2D99B}
 		{7BDFE179-5D48-4C5F-9A26-394DD01C8611} = {2684000B-5588-4C19-A7BA-395A3EE0D7DF}
 		{09A18D2D-49AB-402A-928A-ED30F216398D} = {5EA22CFB-1559-4735-8728-7548695B12A7}
+		{F8E2B407-13EA-4875-9215-BF581FFDF431} = {642FAB64-8E35-4DC4-8C3F-CDCAC856F45C}
 	EndGlobalSection
 EndGlobal

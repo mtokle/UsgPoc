@@ -12,7 +12,7 @@ namespace Tavisca.USG.Actors
         private int actorCounter = 0;
         public TestActor()
         {
-            actorCounter++;
+            //actorCounter++;
             Receives();
         }
 
@@ -20,6 +20,7 @@ namespace Tavisca.USG.Actors
         {
             Receive<string>(message =>
             {
+                actorCounter++;
                 Console.WriteLine(actorCounter);
             });
         }

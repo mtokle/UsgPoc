@@ -8,12 +8,9 @@ using Tavisca.USG.Entities;
 
 namespace Tavisca.USG.Actors
 {
-    public class SupplierSearchMessage
+    public class SearchResultMessage
     {
-        public string SessionId { get; set; }
-        public SupplierInfo Supplier { get; set; }
-        public SupplierMetaData Metadata { get; set; }
-        public List<HotelMapping> HotelMappings { get; set; }
         public IActorRef SourceActor { get; set; }
+        public List<Hotel> Hotels { get; set; }
     }
 }
