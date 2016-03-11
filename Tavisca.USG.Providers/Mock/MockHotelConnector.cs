@@ -13,6 +13,9 @@ namespace Tavisca.USG.Providers
     {
         public List<Hotel> Search(SupplierInfo supplier, SupplierMetaData metadata, List<HotelMapping> hotelMappings)
         {
+            int sleepTime = StaticRandom.Instance.Next(1, 3) * 1000;
+            //Console.WriteLine("{0}|at {1:hh.mm.ss.ffffff}", sleepTime, DateTime.Now);
+
             List<Hotel> hotels = new List<Hotel>();
             foreach (var mapping in hotelMappings)
             {
@@ -23,8 +26,24 @@ namespace Tavisca.USG.Providers
                     ClarifiId = mapping.ClarifiId
                 });
             }
-            Thread.Sleep(supplier.Id * 4000);
+            
+            Thread.Sleep(sleepTime);
             return hotels;
         }
+    }
+
+    public static class StaticRandom
+    {
+        private static int seed;
+
+        private static ThreadLocal<Random> threadLocal = new ThreadLocal<Random>
+            (() => new Random(Interlocked.Increment(ref seed)));
+
+        static StaticRandom()
+        {
+            seed = Environment.TickCount;
+        }
+
+        public static Random Instance { get { return threadLocal.Value; } }
     }
 }

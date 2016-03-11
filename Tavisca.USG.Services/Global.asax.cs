@@ -25,7 +25,7 @@ namespace Tavisca.USG.Services
             IHotelContentManager _contentManager = new MockHotelContentManager();
             IHotelConnectorFactory _connectorFactory = new MockHotelConnectorFactory();
             IResultStoreManager _resultStoreManager = new MockResultStoreManager();
-            SystemActors.HotelSearchActor = ActorSystem.ActorOf(Props.Create(() => new HotelSearchActor(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager)));
+            SystemActors.SearchRequestQueueHandlerActor = ActorSystem.ActorOf(Props.Create(() => new HotelSearchRequestQueueHandler(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager)));
         }
 
         protected void Session_Start(object sender, EventArgs e)

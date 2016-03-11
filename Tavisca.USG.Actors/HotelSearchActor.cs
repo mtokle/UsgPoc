@@ -80,7 +80,9 @@ namespace Tavisca.USG.Actors
             // send search request to connectors if we have all required information to create supplier specific search request
             if(_hotelSearchMessage.SupplierHotelMappings!=null && _hotelSearchMessage.SupplierList != null && _hotelSearchMessage.SupplierMetadataList != null)
             {
-                SystemActors.SearchBroadcastActor.Tell(_hotelSearchMessage);
+                //SystemActors.SearchBroadcastActor.Tell(_hotelSearchMessage);
+                var broadCastActor = Context.ActorOf(Props.Create(() => new SearchBroadcastActor(_connectorFactory)));
+                broadCastActor.Tell(_hotelSearchMessage);
             }
         }
     }

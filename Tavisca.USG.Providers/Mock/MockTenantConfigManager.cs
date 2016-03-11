@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Tavisca.USG.Entities;
 using Tavisca.USG.Interfaces;
@@ -21,6 +22,7 @@ namespace Tavisca.USG.Providers
                     Family = "Supplier" + supplierId,
                 });
             }
+            Thread.Sleep(500);
             return suppliers;
         }
     }

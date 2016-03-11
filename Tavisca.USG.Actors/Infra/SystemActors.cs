@@ -9,7 +9,8 @@ namespace Tavisca.USG.Actors
 {
     public static class SystemActors
     {
-        public static IActorRef HotelSearchActor = ActorRefs.Nobody;
+        public static ActorSystem ActorSystem;
+        public static IActorRef SearchRequestQueueHandlerActor = ActorRefs.Nobody;
         public static IActorRef SearchBroadcastActor = ActorRefs.Nobody;
     }
 }

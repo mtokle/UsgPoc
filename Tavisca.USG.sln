@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.USG.ServiceConsole", "Tavisca.USG.ServiceConsole\Tavisca.USG.ServiceConsole.csproj", "{EF1561B1-77AD-488B-BEBA-8CA52009D236}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1.Host", "1.Host", "{642FAB64-8E35-4DC4-8C3F-CDCAC856F45C}"
@@ -31,7 +29,23 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.USG.TestSuit", "Tav
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tavisca.USG.ConnectorConsole", "Tavisca.USG.ConnectorConsole\Tavisca.USG.ConnectorConsole.csproj", "{F8E2B407-13EA-4875-9215-BF581FFDF431}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{E5816DF3-DF4C-4588-A245-50C4684E0095}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0CFCF682-5042-43E7-B73D-78332518A45A}"
+	ProjectSection(SolutionItems) = preProject
+		Tavisca.USG.vsmdi = Tavisca.USG.vsmdi
+		TestSettings1.testsettings = TestSettings1.testsettings
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Tavisca.USG.vsmdi
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -79,13 +93,13 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{EF1561B1-77AD-488B-BEBA-8CA52009D236} = {642FAB64-8E35-4DC4-8C3F-CDCAC856F45C}
+		{A950DD7B-3D9E-4FF5-844F-A3BCF1A5632E} = {642FAB64-8E35-4DC4-8C3F-CDCAC856F45C}
+		{F8E2B407-13EA-4875-9215-BF581FFDF431} = {642FAB64-8E35-4DC4-8C3F-CDCAC856F45C}
 		{F2420261-75B4-4827-9DBD-389AAFAD5B3B} = {2684000B-5588-4C19-A7BA-395A3EE0D7DF}
 		{EF403D05-0EFB-46AB-9101-CBB802D1117B} = {2684000B-5588-4C19-A7BA-395A3EE0D7DF}
 		{73FAF8F3-3710-4273-9992-BC609636C2CC} = {2684000B-5588-4C19-A7BA-395A3EE0D7DF}
-		{A950DD7B-3D9E-4FF5-844F-A3BCF1A5632E} = {642FAB64-8E35-4DC4-8C3F-CDCAC856F45C}
-		{B6ECAF45-D3C5-473E-9E6B-B80D8299FB31} = {B536194F-8FD8-407E-A770-179D33B2D99B}
 		{7BDFE179-5D48-4C5F-9A26-394DD01C8611} = {2684000B-5588-4C19-A7BA-395A3EE0D7DF}
+		{B6ECAF45-D3C5-473E-9E6B-B80D8299FB31} = {B536194F-8FD8-407E-A770-179D33B2D99B}
 		{09A18D2D-49AB-402A-928A-ED30F216398D} = {5EA22CFB-1559-4735-8728-7548695B12A7}
-		{F8E2B407-13EA-4875-9215-BF581FFDF431} = {642FAB64-8E35-4DC4-8C3F-CDCAC856F45C}
 	EndGlobalSection
 EndGlobal

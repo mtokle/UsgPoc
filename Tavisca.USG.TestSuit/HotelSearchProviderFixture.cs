@@ -19,19 +19,27 @@ namespace Tavisca.USG.TestSuit
     public class HotelSearchProviderFixture
     {
         protected static ActorSystem ActorSystem;
-        private HotelSearchProvider _searchProvider = null;
+        private static HotelSearchProvider _searchProvider = null;
         public HotelSearchProviderFixture()
         {
+          
+        }
+
+        [ClassInitialize]
+        public static void InitilizeScenarioData(TestContext context)
+        {
             ActorSystem = ActorSystem.Create("usg");
+            SystemActors.ActorSystem = ActorSystem;
             ITenantConfigManager _configManager = new MockTenantConfigManager();
             ISupplierMetadataManager _metadataManager = new MockMetadataManager();
             IHotelContentManager _contentManager = new MockHotelContentManager();
             IHotelConnectorFactory _connectorFactory = new MockHotelConnectorFactory();
             IResultStoreManager _resultStoreManager = new MockResultStoreManager();
-            _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), _resultStoreManager, new AkkaTaskManager());
-            SystemActors.HotelSearchActor = ActorSystem.ActorOf(Props.Create(() => new HotelSearchActor(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager)));
+            //_searchProvider = new HotelSearchProvider(new MockSessionStateManager(), _resultStoreManager, new AkkaTaskManager());
+            _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), _resultStoreManager, new AkkaTaskManager(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager));
+            SystemActors.SearchRequestQueueHandlerActor = ActorSystem.ActorOf(Props.Create(() => new HotelSearchRequestQueueHandler(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager)));
             //SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Create(() => new SearchBroadcastActor(new MockHotelConnectorFactory())), "broadcaster"); //local connector actor
-            SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "supplier");
+            //SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "supplier");
         }
 
         [TestMethod]
@@ -43,11 +51,15 @@ namespace Tavisca.USG.TestSuit
             };
             string sessionId = _searchProvider.SearchInit(criteria);
             var hotels = new List<Hotel>();
-            for (int i = 1; i <= criteria.SupplierIds.Count; i++)
+            int pollingCount = 0;
+            while (hotels.Count < criteria.SupplierIds.Count * 100)
             {
-                Thread.Sleep(5000); //result polling interval
+                //Console.WriteLine("polling at {0:hh.mm.ss.ffffff}", DateTime.Now);
                 hotels.AddRange(_searchProvider.GetResults(sessionId));
-                //Assert.IsTrue(hotels.Count == (i * 100)); // should get incremental results as each mock supplier takes 4000ms, 8000ms, 12000ms,... to return result
+                pollingCount++;
+                //Console.WriteLine("{0}|{1}at {2:hh.mm.ss.ffffff}", pollingCount, hotels.Count, DateTime.Now);
+                Thread.Sleep(200); //result polling interval
+                //if (pollingCount > 10) break;
             }
         }
 

@@ -34,6 +34,7 @@ namespace Tavisca.USG.Actors
 
             Receive<SearchResultMessage>(message =>
             {
+                //Console.WriteLine("received results at {0:hh.mm.ss.ffffff}", DateTime.Now);
                 message.SourceActor.Tell(message.Hotels);
             });
         }
