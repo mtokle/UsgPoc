@@ -30,8 +30,13 @@ namespace Tavisca.USG.TestSuit
             IResultStoreManager _resultStoreManager = new MockResultStoreManager();
             _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), _resultStoreManager, new AkkaTaskManager());
             SystemActors.HotelSearchActor = ActorSystem.ActorOf(Props.Create(() => new HotelSearchActor(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager)));
+<<<<<<< HEAD
             //SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Create(() => new SearchBroadcastActor(new MockHotelConnectorFactory())), "broadcaster"); //local connector actor
             SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "supplier"); //remote actor
+=======
+            SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Create(() => new SearchBroadcastActor(new MockHotelConnectorFactory())), "broadcaster"); //local connector actor
+            //SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "supplier");
+>>>>>>> 23dd9837d890cc31c667c1a6183c828a9a491410
         }
 
         [TestMethod]
