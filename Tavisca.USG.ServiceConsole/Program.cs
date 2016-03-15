@@ -39,13 +39,14 @@ namespace Tavisca.USG.ServiceConsole
                     SupplierIds = new List<int>() { 1, 2, 3 },
                 };
                 string sessionId = _searchProvider.SearchInit(criteria);
-                var hotels = new List<Hotel>();
-                for (int i = 1; i <= criteria.SupplierIds.Count; i++)
-                {
-                    Thread.Sleep(5000); //result polling interval
-                    hotels.AddRange(_searchProvider.GetResults(sessionId));
-                    //Assert.IsTrue(hotels.Count == (i * 100)); // should get incremental results as each mock supplier takes 4000ms, 8000ms, 12000ms,... to return result
-                }
+                //string sessionId2 = _searchProvider.SearchInit(criteria);
+                //var hotels = new List<Hotel>();
+                //for (int i = 1; i <= criteria.SupplierIds.Count; i++)
+                //{
+                //    Thread.Sleep(5000); //result polling interval
+                //    hotels.AddRange(_searchProvider.GetResults(sessionId));
+                //    //Assert.IsTrue(hotels.Count == (i * 100)); // should get incremental results as each mock supplier takes 4000ms, 8000ms, 12000ms,... to return result
+                //}
             }
         }
     }
