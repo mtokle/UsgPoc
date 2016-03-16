@@ -15,5 +15,6 @@ namespace Tavisca.USG.Actors
         public List<SupplierMetaData> SupplierMetadataList { get; set; }
         public Dictionary<int, List<HotelMapping>> SupplierHotelMappings { get; set; }
         public string SessionId { get; set; }
+        public IActorRef RequestOriginator = ActorRefs.Nobody;
     }
 }

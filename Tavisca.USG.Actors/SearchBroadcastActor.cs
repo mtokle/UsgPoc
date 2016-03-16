@@ -28,7 +28,7 @@ namespace Tavisca.USG.Actors
                 {
                     var hotelConnector = _connectorFactory.GetHotelConnectorInstance(supplier.Id);
                     var connector = Context.ActorOf(Props.Create(() => new ConnectorSearchActor(hotelConnector)));
-                    connector.Tell(new SupplierSearchMessage() { Supplier = supplier, HotelMappings = message.SupplierHotelMappings[supplier.Id], Metadata = message.SupplierMetadataList.Find(m => m.SupplierId == supplier.Id), SessionId = message.SessionId, SourceActor = Sender });
+                    connector.Tell(new SupplierSearchMessage() { Supplier = supplier, HotelMappings = message.SupplierHotelMappings[supplier.Id], Metadata = message.SupplierMetadataList.Find(m => m.SupplierId == supplier.Id), SessionId = message.SessionId, SourceActor = message.RequestOriginator });
                 }
             });
         }

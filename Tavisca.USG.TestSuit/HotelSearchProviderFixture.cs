@@ -28,7 +28,7 @@ namespace Tavisca.USG.TestSuit
             IHotelContentManager _contentManager = new MockHotelContentManager();
             IHotelConnectorFactory _connectorFactory = new MockHotelConnectorFactory();
             IResultStoreManager _resultStoreManager = new MockResultStoreManager();
-            IBackgroundTaskManager backgroundTaskManager = new AkkaTaskManager(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager);
+            IBackgroundTaskManager backgroundTaskManager = new AkkaTaskManager(_resultStoreManager);
             _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), _resultStoreManager, backgroundTaskManager);
             SystemActors.HotelSearchActor = ActorSystem.ActorOf(Props.Create(() => new HotelSearchActor(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager)));
             //SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Create(() => new SearchBroadcastActor(new MockHotelConnectorFactory())), "broadcaster"); //local connector actor

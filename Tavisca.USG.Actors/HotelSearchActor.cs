@@ -18,6 +18,7 @@ namespace Tavisca.USG.Actors
         IHotelConnectorFactory _connectorFactory = null;
         IResultStoreManager _resultStoreManager = null;
         private HotelSearchMessage _hotelSearchMessage = null;
+        IActorRef _requester = ActorRefs.Nobody;
         public HotelSearchActor(ITenantConfigManager configManager, ISupplierMetadataManager metadataManager, IHotelContentManager contentManager, IHotelConnectorFactory connectorFactory, IResultStoreManager resultStoreManager)
         {
             _metadataManager = metadataManager;
@@ -33,7 +34,6 @@ namespace Tavisca.USG.Actors
             Receive<HotelSearchMessage>(message =>
             {
                 _hotelSearchMessage = message;
-                
                 //Work flow :
                 //Get supplier configuration detailed information 
                 var configActor = Context.ActorOf(Props.Create(() => new ConfigActor(_configManager)));
@@ -68,12 +68,6 @@ namespace Tavisca.USG.Actors
                 _hotelSearchMessage.SupplierHotelMappings = hotelMappings;
                 BroadCastSearchMessage();
             });
-
-            Receive<List<Hotel>>(hotels =>
-            {
-                _resultStoreManager.Save(_hotelSearchMessage.SessionId, hotels);
-            });
-
         }
 
         private void BroadCastSearchMessage()

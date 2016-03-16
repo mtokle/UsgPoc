@@ -59,6 +59,8 @@
     <Compile Include="MetadataActor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SearchBroadcastActor.cs" />
+    <Compile Include="SearchQueueActor.cs" />
+    <Compile Include="SearchRequestHandler.cs" />
     <Compile Include="TestActor.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -19,7 +19,7 @@ namespace Tavisca.USG.ServiceImpl
         public HotelSearchService()
         {
             //TODO:Use DI to inject depedancies
-            IBackgroundTaskManager backGroundTaskManager = new AkkaTaskManager(new MockTenantConfigManager(), new MockMetadataManager(), new MockHotelContentManager(), new MockHotelConnectorFactory(), new MockResultStoreManager());
+            IBackgroundTaskManager backGroundTaskManager = new AkkaTaskManager(new MockResultStoreManager());
             _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), new MockResultStoreManager(), backGroundTaskManager);
         }
 

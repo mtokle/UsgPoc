@@ -21,7 +21,7 @@ namespace Tavisca.USG.Services
             ActorSystem = ActorSystem.Create("usg");
             SystemActors.UsgActorSystem = ActorSystem;
             //SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Create(() => new SearchBroadcastActor(new MockHotelConnectorFactory())), "broadcaster"); //local connector actor
-            SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "supplier");
+            SystemActors.SearchQueueActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "hotelsearchhandler");
         }
 
         protected void Session_Start(object sender, EventArgs e)
