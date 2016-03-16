@@ -25,7 +25,8 @@ namespace Tavisca.USG.ServiceConsole
             IHotelContentManager _contentManager = new MockHotelContentManager();
             IHotelConnectorFactory _connectorFactory = new MockHotelConnectorFactory();
             IResultStoreManager _resultStoreManager = new MockResultStoreManager();
-            HotelSearchProvider _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), _resultStoreManager, new AkkaTaskManager());
+            IBackgroundTaskManager backGroundTaskManager = new AkkaTaskManager(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager);
+            HotelSearchProvider _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), _resultStoreManager, backGroundTaskManager);
             SystemActors.HotelSearchActor = ActorSystem.ActorOf(Props.Create(() => new HotelSearchActor(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager)));
             //SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Create(() => new SearchBroadcastActor(new MockHotelConnectorFactory())), "broadcaster"); //local connector actor
             SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "supplier"); //remote actor

@@ -23,7 +23,7 @@ namespace Tavisca.USG.Actors
             Receive<SupplierSearchMessage>(message =>
             {
                 List<Hotel> hotels = _hotelConnector.Search(message.Supplier, message.Metadata, message.HotelMappings);
-                Sender.Tell(new SearchResultMessage() { SourceActor = message.SourceActor, Hotels = hotels });
+                message.SourceActor.Tell(hotels);
             });
         }
     }

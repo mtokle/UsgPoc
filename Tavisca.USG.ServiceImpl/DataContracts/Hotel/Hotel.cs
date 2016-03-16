@@ -8,5 +8,8 @@ namespace Tavisca.USG.ServiceImpl.DataContracts
 {
     public class Hotel
     {
+        public long ClarifiId { get; set; }
+        public string SupplierHotelId { get; set; }
+        public int SupplierId { get; set; }
     }
 }

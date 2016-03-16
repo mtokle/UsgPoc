@@ -19,13 +19,9 @@ namespace Tavisca.USG.Services
         protected void Application_Start(object sender, EventArgs e)
         {
             ActorSystem = ActorSystem.Create("usg");
-            //SystemActors.HotelSearchActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "hotelSearchActor");
-            ITenantConfigManager _configManager = new MockTenantConfigManager();
-            ISupplierMetadataManager _metadataManager = new MockMetadataManager();
-            IHotelContentManager _contentManager = new MockHotelContentManager();
-            IHotelConnectorFactory _connectorFactory = new MockHotelConnectorFactory();
-            IResultStoreManager _resultStoreManager = new MockResultStoreManager();
-            SystemActors.HotelSearchActor = ActorSystem.ActorOf(Props.Create(() => new HotelSearchActor(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager)));
+            SystemActors.UsgActorSystem = ActorSystem;
+            //SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Create(() => new SearchBroadcastActor(new MockHotelConnectorFactory())), "broadcaster"); //local connector actor
+            SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "supplier");
         }
 
         protected void Session_Start(object sender, EventArgs e)

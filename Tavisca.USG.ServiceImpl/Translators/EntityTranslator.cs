@@ -19,7 +19,9 @@ namespace Tavisca.USG.ServiceImpl.Translators
             if (hotel == null) return null;
             return new DataContracts.Hotel()
             {
-
+                ClarifiId = hotel.ClarifiId,
+                SupplierHotelId = hotel.SupplierHotelId,
+                SupplierId = hotel.SupplierId,
             };
         }
     }

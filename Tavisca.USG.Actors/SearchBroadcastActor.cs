@@ -31,11 +31,6 @@ namespace Tavisca.USG.Actors
                     connector.Tell(new SupplierSearchMessage() { Supplier = supplier, HotelMappings = message.SupplierHotelMappings[supplier.Id], Metadata = message.SupplierMetadataList.Find(m => m.SupplierId == supplier.Id), SessionId = message.SessionId, SourceActor = Sender });
                 }
             });
-
-            Receive<SearchResultMessage>(message =>
-            {
-                message.SourceActor.Tell(message.Hotels);
-            });
         }
     }
 }

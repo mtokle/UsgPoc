@@ -28,7 +28,8 @@ namespace Tavisca.USG.TestSuit
             IHotelContentManager _contentManager = new MockHotelContentManager();
             IHotelConnectorFactory _connectorFactory = new MockHotelConnectorFactory();
             IResultStoreManager _resultStoreManager = new MockResultStoreManager();
-            _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), _resultStoreManager, new AkkaTaskManager());
+            IBackgroundTaskManager backgroundTaskManager = new AkkaTaskManager(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager);
+            _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), _resultStoreManager, backgroundTaskManager);
             SystemActors.HotelSearchActor = ActorSystem.ActorOf(Props.Create(() => new HotelSearchActor(_configManager, _metadataManager, _contentManager, _connectorFactory, _resultStoreManager)));
             //SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Create(() => new SearchBroadcastActor(new MockHotelConnectorFactory())), "broadcaster"); //local connector actor
             SystemActors.SearchBroadcastActor = ActorSystem.ActorOf(Props.Empty.WithRouter(FromConfig.Instance), "supplier");
@@ -51,7 +52,6 @@ namespace Tavisca.USG.TestSuit
                 //Assert.IsTrue(hotels.Count == (i * 100)); // should get incremental results as each mock supplier takes 4000ms, 8000ms, 12000ms,... to return result
             }
         }
-
 
         //[TestMethod]
         //public void TestActor()

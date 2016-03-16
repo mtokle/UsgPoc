@@ -17,7 +17,7 @@ namespace Tavisca.USG.ServiceImpl.ServiceContracts
         SearchInitRs InitSearch(SearchInitRq request);
 
         [OperationContract]
-        [WebInvoke(UriTemplate = "/GetResults", ResponseFormat = WebMessageFormat.Json)]
+        [WebGet(UriTemplate = "/GetResults?sessionId={sessionId}", ResponseFormat = WebMessageFormat.Json)]
         SearchResultRs GetResults(string sessionId);
     }
 }

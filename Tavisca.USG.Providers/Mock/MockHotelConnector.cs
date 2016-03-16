@@ -23,7 +23,7 @@ namespace Tavisca.USG.Providers
                     ClarifiId = mapping.ClarifiId
                 });
             }
-            Thread.Sleep(supplier.Id * 4000);
+            Thread.Sleep(1000);
             return hotels;
         }
     }

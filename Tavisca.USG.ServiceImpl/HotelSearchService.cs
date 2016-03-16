@@ -19,7 +19,8 @@ namespace Tavisca.USG.ServiceImpl
         public HotelSearchService()
         {
             //TODO:Use DI to inject depedancies
-            _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), new MockResultStoreManager(), new AkkaTaskManager());
+            IBackgroundTaskManager backGroundTaskManager = new AkkaTaskManager(new MockTenantConfigManager(), new MockMetadataManager(), new MockHotelContentManager(), new MockHotelConnectorFactory(), new MockResultStoreManager());
+            _searchProvider = new HotelSearchProvider(new MockSessionStateManager(), new MockResultStoreManager(), backGroundTaskManager);
         }
 
         public SearchInitRs InitSearch(SearchInitRq request)
@@ -55,7 +56,7 @@ namespace Tavisca.USG.ServiceImpl
         {
             return new HotelSearchCriteria()
             {
-
+                SupplierIds = request.SupplierIds,
             };
         }
     }
